@@ -1,7 +1,9 @@
 name: vote
 
 on:
-  - push
+  push:
+    branches:
+      - main
 
 jobs:
   docker_image:
@@ -21,5 +23,5 @@ jobs:
 
       - name: build_and_push
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/cicd_tp_vote .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/cicd_tp_vote ./vote
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/cicd_tp_vote
